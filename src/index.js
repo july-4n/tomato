@@ -1,17 +1,17 @@
+/* eslint-disable max-len */
 import './scss/index.scss';
-import {taskOne, Tomato, taskTwo} from './js/task';
+import {RenderTomato} from './js/view.js';
+import './js/controller.js';
+import {Tomato, Task} from './js/model.js';
 
-console.log(taskOne);
-console.log(taskTwo);
+export const view = new RenderTomato(document.getElementById('app'));
+view.render();
 
+// это точно тут должно быть, не понятно что с tasks  потом делать, туда же данные о таксах должны попадать
 const tasks = new Tomato({
-  time: 1,
-  pauseTime: 2,
+  time: 30,
 });
 
-tasks.addTask(taskOne);
-tasks.addTask(taskTwo);
-tasks.activateTask(taskTwo.id);
-tasks.startTask();
-
-console.log(tasks);
+// можно ли так делать?
+export const form = view.renderForm();
+console.log(form);
