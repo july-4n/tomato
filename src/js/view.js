@@ -161,16 +161,16 @@ export class RenderTomato {
     return {manual};
   }
 
-  renderItem() {
+  renderItem(task) {
     const tasksListItem = document.createElement('li');
     tasksListItem.classList.add('tasks__item', 'important');
 
     const countNumber = document.createElement('span');
     countNumber.classList.add('count-number');
-    countNumber.textContent = '';
+    countNumber.textContent = '1';
     const tasksText = document.createElement('button');
     tasksText.classList.add('tasks__text', 'tasks__text_active');
-    tasksText.textContent = '';
+    tasksText.textContent = `${task}`;
     const tasksBtn = document.createElement('button');
     tasksBtn.classList.add('tasks__button');
 
@@ -199,7 +199,7 @@ export class RenderTomato {
     titleMain.textContent = 'Задачи:';
     const tasksList = document.createElement('ul');
     tasksList.classList.add('tasks__list');
-    const {tasksListItem} = this.renderItem();
+    const {tasksListItem} = this.renderItem(); // передавать текст задачи
     tasksList.append(tasksListItem);
     const taskDeadline = document.createElement('p');
     taskDeadline.classList.add('tasks__deadline');
