@@ -1,28 +1,44 @@
-/* eslint-disable max-len */
 /* eslint-disable require-jsdoc */
+import {Model} from './model.js';
 
-// Cannot access 'view' before initialization
-// import {view} from '../index.js';
-
-import {form} from '../index.js';
-
-// обрабатывает submit, получает task, должен передать task Model
-
-class ControllerTomato {
-  constructor(model) {
-    this.model = model;
-    this.getTask = this.getTask.bind(this);
+export class Controller {
+  constructor() {
+    this.model = new Model();
   }
 
-  getTask() {
-    form.addEventListener('submit', evt => {
-      evt.preventDefault();
-      const formData = new FormData(evt.target);
-      const task = Object.fromEntries(formData)['task-name'];
-      console.log(task);
-      return task;
-    });
+  onFormSubmit(title, importanceValue) {
+    return this.model.formSubmit(title, importanceValue);
+  }
+
+  onActiveTask(taskId) {
+    return this.model.activateTask(taskId);
+  }
+
+  onMoveTaskToFirstPlace(activeTaskIndex) {
+    this.model.moveTaskToFirstPlace(activeTaskIndex);
+  }
+
+  onDeadlineTime() {
+    return this.model.updateDeadlineTime();
+  }
+
+  onStopButton() {
+    this.model.stopButton();
+  }
+
+  onStartButton(updateDeadlineTimer) {
+    this.model.startButton(updateDeadlineTimer);
+  }
+
+  onRenameTask(taskId, newTitleTask) {
+    return this.model.renameTask(taskId, newTitleTask);
+  }
+
+  onRemoveTask(taskId) {
+    return this.model.removeTask(taskId);
+  }
+
+  onClearTasks() {
+    return this.model.clearTasks();
   }
 }
-
-export const controller = new ControllerTomato();

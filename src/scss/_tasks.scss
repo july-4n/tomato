@@ -38,11 +38,11 @@
     z-index: 0;
   }
 
-  &__item.default::after {
+  &__item.standard::after {
     background-color: #a9bb30;
   }
 
-  &__item.so-so::after {
+  &__item.unimportant::after {
     background-color: #f3ec34;
   }
 
